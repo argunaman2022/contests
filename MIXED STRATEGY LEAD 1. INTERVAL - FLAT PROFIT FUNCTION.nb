@@ -1,0 +1,278 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11603,        270]
+NotebookOptionsPosition[     10659,        246]
+NotebookOutlinePosition[     11098,        263]
+CellTagsIndexPosition[     11055,        260]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["In search of mixed of Mixed equilibria", "Title",
+ CellChangeTimes->{{3.885278570149088*^9, 
+  3.8852785894341593`*^9}},ExpressionUUID->"ceda4274-05d0-4d56-853d-\
+f80ded2a11f0"],
+
+Cell["\<\
+
+Basics: profit of i when the others (n-1) are mixing with alpha and m\
+\>", "Subtitle",
+ CellChangeTimes->{
+  3.885278607489428*^9, {3.8852786463302665`*^9, 3.8852786487857447`*^9}, {
+   3.885278841749132*^9, 3.885278852118208*^9}, {3.8852817086668615`*^9, 
+   3.8852817141696625`*^9}},ExpressionUUID->"cd116313-8261-4a06-8030-\
+72447fbe1ce0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Assuming", " ", "m"}], ">", 
+    RowBox[{"b", "-", 
+     RowBox[{"a", " ", "we", " ", "have"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"V", "=", "1000"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"a", ":=", 
+     RowBox[{"-", "2"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"b", ":=", "2"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"\[Alpha]", ":=", 
+     RowBox[{
+      RowBox[{"1", "/", "2"}], "-", 
+      RowBox[{
+       RowBox[{"c", "[", "m", "]"}], "/", "V"}]}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"c", "[", "e_", "]"}], ":=", 
+     RowBox[{"e", "^", "2"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"b", "-", "a"}], "<=", "m", "<=", 
+     RowBox[{"Sqrt", "[", "V", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"uniformCDF", "[", "x_", "]"}], ":=", 
+     RowBox[{"Piecewise", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"x", "-", "a"}], 
+           RowBox[{"b", "-", "a"}]], ",", 
+          RowBox[{"a", "<", "x", "<", "b"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", " ", 
+          RowBox[{"x", ">=", "b"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", 
+          RowBox[{"x", "<=", "a"}]}], "}"}]}], "}"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"uniformPDF", "[", "x_", "]"}], ":=", " ", 
+     RowBox[{
+      RowBox[{"uniformCDF", "'"}], "[", "x", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"cdf", "[", "x_", "]"}], ":=", 
+     RowBox[{"uniformCDF", "[", "x", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"pdf", "[", "x_", "]"}], ":=", 
+     RowBox[{"uniformPDF", "[", "x", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"profit", "[", "e_", "]"}], ":=", " ", 
+    RowBox[{
+     RowBox[{"\[Alpha]", " ", "V", " ", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"cdf", "[", 
+          RowBox[{"e", "+", "x", "-", "m"}], "]"}], 
+         RowBox[{"pdf", "[", "x", "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "a", ",", "b"}], "}"}], ",", " ", 
+        RowBox[{"Assumptions", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"a", "<", "0"}], ",", 
+           RowBox[{"b", ">", "0"}]}], "}"}]}]}], "]"}]}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "\[Alpha]"}], ")"}], "V", " ", 
+      RowBox[{"Integrate", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"cdf", "[", 
+          RowBox[{"e", "+", "x"}], "]"}], 
+         RowBox[{"pdf", "[", "x", "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "a", ",", "b"}], "}"}], ",", " ", 
+        RowBox[{"Assumptions", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"a", "<", "0"}], ",", 
+           RowBox[{"b", ">", "0"}]}], "}"}]}]}], "]"}]}], "-", 
+     RowBox[{"c", "[", "e", "]"}]}]}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"profit", "[", "e", "]"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{"profit", "[", "e", "]"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"e", ",", "0", ",", 
+        RowBox[{"Sqrt", "[", "V", "]"}]}], "}"}]}], "]"}], "*)"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"FindMaximum", "[", 
+    RowBox[{
+     RowBox[{"profit", "[", "e", "]"}], ",", "e"}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.8852787030306883`*^9, 3.8852787526256647`*^9}, {
+   3.885278855684692*^9, 3.8852789787859774`*^9}, {3.885279021330506*^9, 
+   3.8852791437960443`*^9}, {3.8852791962587523`*^9, 
+   3.8852793057783012`*^9}, {3.8852793640699444`*^9, 
+   3.8852793955565243`*^9}, {3.885279426368677*^9, 3.885279527161071*^9}, {
+   3.8852795662426186`*^9, 3.8852796347715178`*^9}, {3.88527967264152*^9, 
+   3.885279676182274*^9}, {3.8852797122737913`*^9, 3.8852797193474016`*^9}, {
+   3.885279841413992*^9, 3.885279883507018*^9}, {3.8852801689774847`*^9, 
+   3.8852801959016685`*^9}, {3.8852802573989105`*^9, 
+   3.8852802609917383`*^9}, {3.8852803113038306`*^9, 
+   3.8852803340102286`*^9}, {3.8852803661385036`*^9, 3.885280368302758*^9}, 
+   3.8852805539220467`*^9, {3.8852806342582455`*^9, 3.8852806345741653`*^9}, {
+   3.885280681172343*^9, 3.8852807073117723`*^9}, {3.885280792425392*^9, 
+   3.8852807925943003`*^9}, {3.885280835768851*^9, 3.885280866087807*^9}, {
+   3.8852809409024887`*^9, 3.8852809459386487`*^9}, {3.8852815121002483`*^9, 
+   3.8852815323991795`*^9}, {3.8852834657542043`*^9, 3.885283580860303*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"29e78ccf-ec05-455b-825d-3031f79df723"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "FindMaximum", "nrnum", 
+   "\"The function value \\!\\(\\*RowBox[{RowBox[{\\\"1.`\\\", \\\"\
+\[VeryThinSpace]\\\"}], \\\"-\\\", RowBox[{\\\"718.75`\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{FractionBox[\\\"1\\\", \\\"2\\\"], \\\"+\\\", \
+FractionBox[SuperscriptBox[\\\"m\\\", \\\"2\\\"], \\\"1000\\\"]}], \
+\\\")\\\"}]}], \\\"-\\\", RowBox[{\\\"1000\\\", \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{FractionBox[\\\"1\\\", \\\"2\\\"], \\\"-\\\", \
+FractionBox[SuperscriptBox[\\\"m\\\", \\\"2\\\"], \\\"1000\\\"]}], \
+\\\")\\\"}], \\\" \\\", RowBox[{\\\"(\\\", \
+TagBox[GridBox[{{\\\"\[Piecewise]\\\", GridBox[{{\\\"1\\\", \
+RowBox[{RowBox[{RowBox[{\\\"1.`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"\[GreaterEqual]\\\", \
+\\\"4\\\"}]}, {RowBox[{FractionBox[\\\"1\\\", \\\"32\\\"], \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{RowBox[{\\\"15.`\\\", \\\"\[VeryThinSpace]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}]}], \
+RowBox[{RowBox[{RowBox[{\\\"1.`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"\[Equal]\\\", \\\"0\\\"}]}, \
+{RowBox[{FractionBox[\\\"1\\\", \\\"32\\\"], \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"23.`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", RowBox[{\
+\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\")\\\"}]}], RowBox[{\\\"0\\\", \\\"<\\\", \
+RowBox[{RowBox[{\\\"1.`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"<\\\", \\\"4\\\"}]}, \
+{RowBox[{FractionBox[\\\"1\\\", \\\"32\\\"], \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"25.`\\\", \\\"\[VeryThinSpace]\\\"}], \\\"+\\\", RowBox[{\
+\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\")\\\"}]}], RowBox[{RowBox[{\\\"-\\\", \\\"4\\\"}], \
+\\\"<\\\", RowBox[{RowBox[{\\\"1.`\\\", \\\"\[VeryThinSpace]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"<\\\", \
+\\\"0\\\"}]}, {\\\"0\\\", TagBox[\\\"True\\\", \\\"PiecewiseDefault\\\", \
+Rule[AutoDelete, True]]}}, Rule[ColumnAlignments, List[Left]], \
+Rule[ColumnSpacings, 1.2`], Rule[ColumnWidths, Automatic], \
+Rule[AllowedDimensions, List[2, Automatic]], Rule[Selectable, True], \
+Rule[Editable, True]]}}, Rule[ColumnAlignments, List[Left]], \
+Rule[ColumnSpacings, 0.5`], Rule[ColumnWidths, Automatic]], \
+\\\"Piecewise\\\", Rule[SyntaxForm, Equal], Rule[SelectWithContents, True], \
+Rule[StripWrapperBoxes, True], Rule[Selectable, False], Rule[Editable, \
+False], Rule[DeleteWithContents, True]], \\\")\\\"}]}]}]\\) is not a real \
+number at \\!\\(\\*RowBox[{\\\"{\\\", \\\"e\\\", \\\"}\\\"}]\\) = \
+\\!\\(\\*RowBox[{\\\"{\\\", \\\"1.`\\\", \\\"}\\\"}]\\).\"", 2, 12, 1, 
+   31888741684400306140, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.8852835595129976`*^9, 3.8852835713798485`*^9}, 
+   3.8852836087756767`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"8b70a535-e422-4689-ac4a-0b3a3a2a1297"],
+
+Cell[BoxData[
+ RowBox[{"FindMaximum", "[", 
+  RowBox[{
+   RowBox[{"profit", "[", "e", "]"}], ",", "e"}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.8852834272219553`*^9, 3.885283484731769*^9, {3.8852835390579576`*^9, 
+   3.8852835713954697`*^9}, 3.8852836088069143`*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"e45a477f-6c2e-4f3e-99ab-dc1f2c920543"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8852834154730616`*^9, 3.8852834180917773`*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"7b28cfdd-f7f3-4c09-bbd0-315250c273b9"]
+}, Open  ]]
+},
+WindowSize->{1428., 735.75},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>1.7 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (February 4, 2022)",
+StyleDefinitions->"ReverseColor.nb",
+ExpressionUUID->"d8db8bbd-a860-4d5b-88a1-a781544984e4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 183, 3, 165, "Title",ExpressionUUID->"ceda4274-05d0-4d56-853d-f80ded2a11f0"],
+Cell[766, 27, 354, 8, 145, "Subtitle",ExpressionUUID->"cd116313-8261-4a06-8030-72447fbe1ce0"],
+Cell[CellGroupData[{
+Cell[1145, 39, 5009, 129, 724, "Input",ExpressionUUID->"29e78ccf-ec05-455b-825d-3031f79df723"],
+Cell[6157, 170, 3945, 59, 238, "Message",ExpressionUUID->"8b70a535-e422-4689-ac4a-0b3a3a2a1297"],
+Cell[10105, 231, 348, 7, 75, "Output",ExpressionUUID->"e45a477f-6c2e-4f3e-99ab-dc1f2c920543"]
+}, Open  ]],
+Cell[10468, 241, 175, 2, 68, InheritFromParent,ExpressionUUID->"7b28cfdd-f7f3-4c09-bbd0-315250c273b9"]
+}, Open  ]]
+}
+]
+*)
+
